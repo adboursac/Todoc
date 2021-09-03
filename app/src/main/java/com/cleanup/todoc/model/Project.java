@@ -1,8 +1,8 @@
 package com.cleanup.todoc.model;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * <p>Models for project in which tasks are included.</p>
