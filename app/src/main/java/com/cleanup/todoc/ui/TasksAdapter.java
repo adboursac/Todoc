@@ -20,11 +20,7 @@ import java.util.List;
  *
  * @author Gaëtan HERFRAY
  */
-/*
-@Entity(foreignKeys = @ForeignKey(entity = User.class,
-        parentColumns = "id",
-        childColumns = "userId"))
- */
+
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHolder> {
     /**
      * The list of tasks the adapter deals with
