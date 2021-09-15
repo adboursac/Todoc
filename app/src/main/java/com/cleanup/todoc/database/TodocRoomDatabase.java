@@ -10,12 +10,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.cleanup.todoc.database.dao.ProjectDao;
 import com.cleanup.todoc.database.dao.TaskDao;
+import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Task.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)
 public abstract class TodocRoomDatabase extends RoomDatabase {
     private static volatile TodocRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -48,12 +49,16 @@ public abstract class TodocRoomDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
-                //prepopulateTasks();
+                prepopulateTasks();
             });
         }
     };
 
     private static void prepopulateTasks() {
-        //nothing to prepopulate yet.
+        ProjectDao dao = INSTANCE.projectDao();
+        dao.deleteAll();
+        dao.insert(new Project("Projet Tartampion", 0xFFEADAD1));
+        dao.insert(new Project("Projet Lucidia", 0xFFB4CDBA));
+        dao.insert(new Project("Projet Circus", 0xFFA3CED2));
     }
 }

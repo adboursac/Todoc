@@ -25,7 +25,7 @@ allprojects {
 ext {
     appCompatVersion = '1.0.0'
     // Room components
-    roomVersion = '2.0.0'
+    roomVersion = '2.3.0'
     // Lifecycle components
     lifecycleVersion = '2.2.0'
     // UI
