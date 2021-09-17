@@ -14,8 +14,8 @@ public class ProjectRepository {
         mProjectDao = projectDao;
     }
 
-    LiveData<List<Project>> getAllProjects() {
-        return mProjectDao.getAllProjects();
+    LiveData<List<Project>> fetchAllProjects() {
+        return mProjectDao.fetchAllProjects();
     }
 
     void insert(Project project) {

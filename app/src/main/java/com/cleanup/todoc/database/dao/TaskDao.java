@@ -12,7 +12,7 @@ import java.util.List;
 public interface TaskDao {
 
     @Query("SELECT * FROM Task")
-    LiveData<List<Task>> getAllTasks();
+    LiveData<List<Task>> fetchAllTasks();
 
     @Insert
     long insert(Task task);

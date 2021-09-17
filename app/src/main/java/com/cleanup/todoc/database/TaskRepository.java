@@ -1,7 +1,5 @@
 package com.cleanup.todoc.database;
 
-import android.app.Application;
-
 import androidx.lifecycle.LiveData;
 
 import com.cleanup.todoc.database.dao.TaskDao;
@@ -16,8 +14,8 @@ public class TaskRepository {
         mTaskDao = taskDao;
     }
 
-    LiveData<List<Task>> getAllTasks() {
-        return mTaskDao.getAllTasks();
+    LiveData<List<Task>> fetchAllTasks() {
+        return mTaskDao.fetchAllTasks();
     }
 
     void insert(Task task) {

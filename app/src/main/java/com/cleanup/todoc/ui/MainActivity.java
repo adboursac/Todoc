@@ -28,7 +28,6 @@ import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -59,12 +58,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * The adapter which handles the list of tasks
      */
     private final TasksAdapter adapter = new TasksAdapter(mTasks, this, this);
-
-    /**
-     * The sort method to be used to display tasks
-     */
-    @NonNull
-    private SortMethod sortMethod = SortMethod.NONE;
 
     /**
      * Dialog to create a new task
@@ -126,12 +119,12 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     private void initViewModel() {
         ViewModelFactory mViewModelFactory = Injection.provideViewModelFactory(this);
         mTaskViewModel = new ViewModelProvider(this, mViewModelFactory).get(TaskViewModel.class);
-        mTaskViewModel.getAllTasks().observe(this, tasks -> {
+        mTaskViewModel.fetchAllTasks().observe(this, tasks -> {
             mTasks = tasks;
             updateTasks();
         });
 
-        mTaskViewModel.getAllProjects().observe(this, projects -> {
+        mTaskViewModel.fetchAllProjects().observe(this, projects -> {
             mProjects = projects;
         });
     }
@@ -145,19 +138,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.filter_alphabetical) {
-            sortMethod = SortMethod.ALPHABETICAL;
-        } else if (id == R.id.filter_alphabetical_inverted) {
-            sortMethod = SortMethod.ALPHABETICAL_INVERTED;
-        } else if (id == R.id.filter_oldest_first) {
-            sortMethod = SortMethod.OLD_FIRST;
-        } else if (id == R.id.filter_recent_first) {
-            sortMethod = SortMethod.RECENT_FIRST;
-        }
-
+        mTaskViewModel.setSortMethod(id);
         updateTasks();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -243,21 +225,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         } else {
             lblNoTasks.setVisibility(View.GONE);
             listTasks.setVisibility(View.VISIBLE);
-            switch (sortMethod) {
-                case ALPHABETICAL:
-                    Collections.sort(mTasks, new Task.TaskAZComparator());
-                    break;
-                case ALPHABETICAL_INVERTED:
-                    Collections.sort(mTasks, new Task.TaskZAComparator());
-                    break;
-                case RECENT_FIRST:
-                    Collections.sort(mTasks, new Task.TaskRecentComparator());
-                    break;
-                case OLD_FIRST:
-                    Collections.sort(mTasks, new Task.TaskOldComparator());
-                    break;
-
-            }
+            mTaskViewModel.updateTaskSortOrder(mTasks);
             adapter.updateTasks(mTasks);
         }
     }
@@ -326,31 +294,5 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @Override
     public Project getProjectById(long projectId) {
         return TaskViewModel.getProjectById(projectId, mProjects);
-    }
-
-    /**
-     * List of all possible sort methods for task
-     */
-    private enum SortMethod {
-        /**
-         * Sort alphabetical by name
-         */
-        ALPHABETICAL,
-        /**
-         * Inverted sort alphabetical by name
-         */
-        ALPHABETICAL_INVERTED,
-        /**
-         * Lastly created first
-         */
-        RECENT_FIRST,
-        /**
-         * First created first
-         */
-        OLD_FIRST,
-        /**
-         * No sort
-         */
-        NONE
     }
 }
