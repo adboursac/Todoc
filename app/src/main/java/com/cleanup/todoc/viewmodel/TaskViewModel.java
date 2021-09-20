@@ -1,4 +1,4 @@
-package com.cleanup.todoc.database;
+package com.cleanup.todoc.viewmodel;
 
 import android.util.Log;
 
@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel;
 import com.cleanup.todoc.R;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
+import com.cleanup.todoc.repository.ProjectRepository;
+import com.cleanup.todoc.repository.TaskRepository;
 
 import java.util.Collections;
 import java.util.List;

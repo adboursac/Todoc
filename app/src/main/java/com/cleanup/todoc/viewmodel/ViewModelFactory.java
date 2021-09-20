@@ -1,7 +1,10 @@
-package com.cleanup.todoc.database;
+package com.cleanup.todoc.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.cleanup.todoc.repository.ProjectRepository;
+import com.cleanup.todoc.repository.TaskRepository;
 
 import java.util.concurrent.Executor;
 

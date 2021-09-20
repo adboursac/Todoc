@@ -4,9 +4,9 @@ import android.content.Context;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 
-import com.cleanup.todoc.database.TodocRoomDatabase;
-import com.cleanup.todoc.database.dao.ProjectDao;
-import com.cleanup.todoc.database.dao.TaskDao;
+import com.cleanup.todoc.model.TodocRoomDatabase;
+import com.cleanup.todoc.model.dao.ProjectDao;
+import com.cleanup.todoc.model.dao.TaskDao;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 

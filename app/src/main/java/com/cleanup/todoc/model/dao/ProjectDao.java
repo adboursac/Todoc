@@ -1,4 +1,4 @@
-package com.cleanup.todoc.database.dao;
+package com.cleanup.todoc.model.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

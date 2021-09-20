@@ -39,14 +39,6 @@ public class Task {
     private String name;
 
     /**
-     *
-     * @return
-     */
-    public long getCreationTimestamp() {
-        return creationTimestamp;
-    }
-
-    /**
      * The timestamp when the task has been created
      */
     private long creationTimestamp;
@@ -113,6 +105,14 @@ public class Task {
      */
     private void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public long getCreationTimestamp() {
+        return creationTimestamp;
     }
 
     /**

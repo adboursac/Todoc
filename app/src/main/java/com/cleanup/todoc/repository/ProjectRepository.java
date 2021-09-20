@@ -1,8 +1,8 @@
-package com.cleanup.todoc.database;
+package com.cleanup.todoc.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.cleanup.todoc.database.dao.ProjectDao;
+import com.cleanup.todoc.model.dao.ProjectDao;
 import com.cleanup.todoc.model.Project;
 
 import java.util.List;
@@ -14,15 +14,15 @@ public class ProjectRepository {
         mProjectDao = projectDao;
     }
 
-    LiveData<List<Project>> fetchAllProjects() {
+    public LiveData<List<Project>> fetchAllProjects() {
         return mProjectDao.fetchAllProjects();
     }
 
-    void insert(Project project) {
+    public void insert(Project project) {
         mProjectDao.insert(project);
     }
 
-    void delete(Project project) {
+    public void delete(Project project) {
         mProjectDao.delete(project.getId());
     }
 }

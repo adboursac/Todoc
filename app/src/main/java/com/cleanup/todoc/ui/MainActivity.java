@@ -20,9 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.database.TaskGetProjectCommand;
-import com.cleanup.todoc.database.TaskViewModel;
-import com.cleanup.todoc.database.ViewModelFactory;
+import com.cleanup.todoc.viewmodel.TaskViewModel;
+import com.cleanup.todoc.viewmodel.ViewModelFactory;
 import com.cleanup.todoc.injection.Injection;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
